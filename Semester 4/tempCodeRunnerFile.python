@@ -1,0 +1,38 @@
+from math import *
+from numpy import *
+from sympy import *
+from sympy.abc import n
+
+def D(y,yy):
+    l=limit(yy/y,n,inf)
+    if l>1:
+        print("Divergent by D'Alembert")
+    elif l<1:
+        print("Convergent by D'Alembert")
+    else:
+        print ("D'Alembert fails")
+def R(y,yy):
+    l=limit((y/yy-1)*n,n,inf)        
+    if l<1: 
+        print("Divergent by Raabe")
+    elif l>1:
+        print("Convergent by Raabe")
+    else:
+        print ("Raabe fails")
+def C(y,yy):
+    l=limit(y**(1/n),n,inf)
+    if l>1:
+        print("Divergent by Cauchy")
+    elif l<1:
+        print("Convergent by Cauchy")
+    else:
+        print ("Cauchy fails")
+
+def Test(y,yy): 
+    D(y,yy)
+    R(y,yy)
+    C(y,yy)
+
+y=((n**2)*(n+1)**2)/factorial(n)
+yy=y.subs({n:n+1}).doit()    
+Test(y, yy)
